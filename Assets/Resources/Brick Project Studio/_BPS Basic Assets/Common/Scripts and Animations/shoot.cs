@@ -9,10 +9,12 @@ namespace SojaExiles
     {
         public Camera fpscam;
         public float range;
-        public GameObject bullet; 
+        public GameObject bullet;
+
+        public AudioSource Gun_shot;
         void Start()
         {
-
+            Gun_shot = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -20,13 +22,12 @@ namespace SojaExiles
             
             if (Input.GetMouseButtonDown(0))
             {
-
-                Debug.Log("shooting");
+                Gun_shot.Play();
                 RaycastHit hit;
                if( Physics.Raycast(fpscam.transform.position,fpscam.transform.forward , out hit ,range ))
                {
                     Debug.Log(hit.transform.name);  // 顯示擊中目標
-                    //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
+                //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
                     SpawnDecal(hit, bullet);
                 }
             }
@@ -36,6 +37,7 @@ namespace SojaExiles
         {
             GameObject spawedDecal = GameObject.Instantiate(prefab, hit.point, Quaternion.LookRotation(hit.normal));
             spawedDecal.transform.SetParent(hit.collider.transform);
+            Destroy(spawedDecal,2);
         }
     }
 }
