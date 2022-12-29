@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneIndexDestination: 2
-  btnTeach: {fileID: 960157337}
+  btn: {fileID: 960157337}
   selectingSound: {fileID: 8300000, guid: 003f6a136c9fa45f9accafae1506684c, type: 3}
   pushingSound: {fileID: 8300000, guid: f35c2e263119846a1bbc3479f8c811f5, type: 3}
 --- !u!82 &960157340
@@ -1056,11 +1056,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128876954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fedc69a82a1445259937b71f3ae48d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 39f46f1af7f184df699a01dd5381ebe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnStart: {fileID: 1128876956}
-  SceneIndexDestination: 1
+  SceneIndexDestination: 3
+  btn: {fileID: 1128876956}
   selectingSound: {fileID: 8300000, guid: 003f6a136c9fa45f9accafae1506684c, type: 3}
   pushingSound: {fileID: 8300000, guid: f35c2e263119846a1bbc3479f8c811f5, type: 3}
 --- !u!82 &1128876959
