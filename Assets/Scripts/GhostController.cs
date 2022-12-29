@@ -55,6 +55,7 @@ public class GhostController : MonoBehaviour
         {
             animator.SetTrigger("Shoot");
         }
+        //
     }
 
     // private void OnCollisionStay(UnityEngine.Collision collision)
