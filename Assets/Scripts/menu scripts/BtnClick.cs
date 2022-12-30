@@ -21,6 +21,7 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerEnter(PointerEventData e)
     {
+
         _audioSource.clip = selectingSound;
         _audioSource.volume *= 3;
         _audioSource.Play();
@@ -35,6 +36,15 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         _audioSource.clip = pushingSound;
         _audioSource.Play();
 
+        if (SceneIndexDestination > 0)
+        {
+            SwitchScene();
+        }
+
+    }
+
+    private void SwitchScene()
+    {
         // get current scene
         Scene scene = SceneManager.GetActiveScene();
 
