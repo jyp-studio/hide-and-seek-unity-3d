@@ -13,18 +13,20 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     private AudioSource _audioSource;
     public AudioClip selectingSound;
     public AudioClip pushingSound;
+    public SoundEffect soundEffectPlayer;
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        // soundEffectPlayer = 
     }
 
     public void OnPointerEnter(PointerEventData e)
     {
-
-        _audioSource.clip = selectingSound;
-        _audioSource.volume *= 3;
-        _audioSource.Play();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(selectingSound);
+        // _audioSource.clip = selectingSound;
+        // _audioSource.volume *= 3;
+        // _audioSource.Play();
         btn.fontStyle = FontStyles.Underline | FontStyles.SmallCaps;
     }
     public void OnPointerExit(PointerEventData e)
@@ -33,8 +35,9 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
     public void OnPointerClick(PointerEventData e)
     {
-        _audioSource.clip = pushingSound;
-        _audioSource.Play();
+        // _audioSource.clip = pushingSound;
+        // _audioSource.Play();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(pushingSound);
 
         if (SceneIndexDestination > 0)
         {
