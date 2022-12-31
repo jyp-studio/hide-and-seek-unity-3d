@@ -17,6 +17,8 @@ namespace SojaExiles
         public string target = "Cube";  // 目標物之 tag
 
         RaycastHit hit;      // 滑鼠雷射
+
+        public float Delay = 0f;
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
@@ -24,10 +26,11 @@ namespace SojaExiles
 
         void Update()
         {
-            
-            if (Input.GetMouseButtonDown(0))
+            Delay -= Time.deltaTime;  // 延遲時間
+            if (Input.GetMouseButtonDown(0) && Delay <=0)
             {
-               if( Physics.Raycast(fpscam.transform.position,fpscam.transform.forward , out hit ,range ))
+                Delay = 0.5f;         // 延遲0.5秒
+                if ( Physics.Raycast(fpscam.transform.position,fpscam.transform.forward , out hit ,range ))
                {
                     CorrectTest(hit);
                     // Debug.Log(hit.transform.name);  // 顯示擊中目標
