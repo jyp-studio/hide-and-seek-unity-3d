@@ -58,7 +58,7 @@ public class SettingMenu : MonoBehaviour
     }
     public void SetMouseSensetivityVolume(float volume)
     {
-        // MouseLook.mouseXSensitivity = 9f * volume + 100f;
+        MouseLook.mouseXSensitivity = 9f * volume + 100f;
         mouseSensetivityText.text = $"{(int)volume}";
     }
     public void SetQuality(int qualityIndex)
