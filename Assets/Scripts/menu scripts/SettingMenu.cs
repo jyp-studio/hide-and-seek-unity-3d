@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
+using SojaExiles;
 
 public class SettingMenu : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SettingMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropDown;
     public TextMeshProUGUI musicVolumeText;
     public TextMeshProUGUI soundEffectVolumeText;
+    public TextMeshProUGUI mouseSensetivityText;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class SettingMenu : MonoBehaviour
 
         musicVolumeText.text = GameObject.Find("MusicSlider").GetComponent<Slider>().value.ToString();
         soundEffectVolumeText.text = GameObject.Find("EffectSlider").GetComponent<Slider>().value.ToString();
+        mouseSensetivityText.text = GameObject.Find("MouseSlider").GetComponent<Slider>().value.ToString();
     }
     public void SetMasterVolume(float volume)
     {
@@ -52,6 +55,11 @@ public class SettingMenu : MonoBehaviour
     {
         audioMixer.SetFloat("SoundEffectVolume", 0.9f * volume - 80f);
         soundEffectVolumeText.text = $"{(int)volume}";
+    }
+    public void SetMouseSensetivityVolume(float volume)
+    {
+        MouseLook.mouseXSensitivity = 9f * volume + 100f;
+        mouseSensetivityText.text = $"{(int)volume}";
     }
     public void SetQuality(int qualityIndex)
     {

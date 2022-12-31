@@ -8,7 +8,7 @@ namespace SojaExiles
     public class MouseLook : MonoBehaviour
     {
 
-        public float mouseXSensitivity = 100f;
+        public static float mouseXSensitivity = 100f;
 
         public Transform playerBody;
 
@@ -23,6 +23,7 @@ namespace SojaExiles
         // Update is called once per frame
         void Update()
         {
+            Debug.Log(mouseXSensitivity);
             float mouseX = Input.GetAxis("Mouse X") * mouseXSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseXSensitivity * Time.deltaTime;
 

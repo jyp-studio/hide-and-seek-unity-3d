@@ -13,7 +13,7 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     private AudioSource _audioSource;
     public AudioClip selectingSound;
     public AudioClip pushingSound;
-    public SoundEffect soundEffectPlayer;
+    // public SoundEffect soundEffectPlayer;
 
     void Start()
     {
