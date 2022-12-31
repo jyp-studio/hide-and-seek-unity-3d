@@ -10,6 +10,8 @@ public class SettingMenu : MonoBehaviour
     public AudioMixer audioMixer;
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropDown;
+    public TextMeshProUGUI musicVolumeText;
+    public TextMeshProUGUI soundEffectVolumeText;
 
     void Start()
     {
@@ -33,10 +35,23 @@ public class SettingMenu : MonoBehaviour
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
+
+        musicVolumeText.text = GameObject.Find("MusicSlider").GetComponent<Slider>().value.ToString();
+        soundEffectVolumeText.text = GameObject.Find("EffectSlider").GetComponent<Slider>().value.ToString();
     }
-    public void SetVolume(float volume)
+    public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("MasterVolume", 0.9f * volume - 80f);
+    }
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", 0.9f * volume - 80f);
+        musicVolumeText.text = $"{(int)volume}";
+    }
+    public void SetSoundEffectVolume(float volume)
+    {
+        audioMixer.SetFloat("SoundEffectVolume", 0.9f * volume - 80f);
+        soundEffectVolumeText.text = $"{(int)volume}";
     }
     public void SetQuality(int qualityIndex)
     {

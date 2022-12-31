@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 209488973}
   - component: {fileID: 209488972}
   m_Layer: 5
-  m_Name: MouseVolumn
+  m_Name: MouseVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 357649224}
   - component: {fileID: 357649223}
   m_Layer: 5
-  m_Name: EffectVolumn
+  m_Name: EffectVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: -1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2038,6 +2038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: cf2846f8387eb4c0190916c6b8b3b637, type: 2}
   resolutionDropDown: {fileID: 1111867500}
+  musicVolumeText: {fileID: 1362184208}
+  soundEffectVolumeText: {fileID: 357649223}
 --- !u!1 &789604483
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,6 +3992,7 @@ MonoBehaviour:
   btn: {fileID: 1148430787}
   selectingSound: {fileID: 8300000, guid: 003f6a136c9fa45f9accafae1506684c, type: 3}
   pushingSound: {fileID: 8300000, guid: f35c2e263119846a1bbc3479f8c811f5, type: 3}
+  soundEffectPlayer: {fileID: 0}
 --- !u!114 &1148430787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4565,7 +4568,7 @@ GameObject:
   - component: {fileID: 1362184209}
   - component: {fileID: 1362184208}
   m_Layer: 5
-  m_Name: MusicVolumn
+  m_Name: MusicVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4611,7 +4614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: -1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4773,12 +4776,24 @@ MonoBehaviour:
   m_HandleRect: {fileID: 334818622}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 88
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 738155904}
+        m_TargetAssemblyTypeName: SettingMenu, Assembly-CSharp
+        m_MethodName: SetSoundEffectVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1449324136
 GameObject:
   m_ObjectHideFlags: 0
@@ -5385,6 +5400,7 @@ MonoBehaviour:
   btn: {fileID: 1608521764}
   selectingSound: {fileID: 8300000, guid: 003f6a136c9fa45f9accafae1506684c, type: 3}
   pushingSound: {fileID: 8300000, guid: f35c2e263119846a1bbc3479f8c811f5, type: 3}
+  soundEffectPlayer: {fileID: 0}
 --- !u!114 &1608521764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6320,16 +6336,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 920862606}
   m_HandleRect: {fileID: 1759736870}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
+  m_MinValue: 0
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 88
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 738155904}
         m_TargetAssemblyTypeName: SettingMenu, Assembly-CSharp
-        m_MethodName: SetVolume
+        m_MethodName: SetMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
