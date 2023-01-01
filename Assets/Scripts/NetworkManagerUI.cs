@@ -10,9 +10,29 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private Button serverBtn;
     [SerializeField] private Button hostBtn;
     [SerializeField] private Button clientBtn;
+    private bool isSet = false;
 
-    private void Awake()
+    private void Update()
     {
+        
+        if(!isSet){
+            if (Player.isServer)
+            {
+                NetworkManager.Singleton.StartServer();
+                isSet = true;
+            }
+            if (Player.isHost)
+            {
+                NetworkManager.Singleton.StartHost();
+                isSet = true;
+            }
+            if (Player.isClient)
+            {
+                NetworkManager.Singleton.StartClient();
+                isSet = true;
+            }
+        }
+        /*
         serverBtn.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.StartServer();
@@ -25,5 +45,6 @@ public class NetworkManagerUI : MonoBehaviour
         {
             NetworkManager.Singleton.StartClient();
         });
+        */
     }
 }

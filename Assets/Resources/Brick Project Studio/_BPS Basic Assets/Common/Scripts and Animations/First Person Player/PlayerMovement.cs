@@ -12,7 +12,7 @@ namespace SojaExiles
         [SerializeField] private Transform spawnedObject;
         private Transform spawnedObjectTransform;
 
-
+        public Camera cam;
         public CharacterController controller;
 
         public float speed = 5f;
@@ -51,9 +51,9 @@ namespace SojaExiles
             };
         }
 
-        private void Start()
+        void Start()
         {
-            transform.position = new Vector3(0, 0, 0);
+            if (!IsLocalPlayer) cam.enabled = false;
         }
 
         // Update is called once per frame
