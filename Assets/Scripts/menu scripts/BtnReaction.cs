@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using TMPro;
 
-public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BtnReaction : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    public int SceneIndexDestination = 2;
     public TextMeshProUGUI btn;
     private AudioSource _audioSource;
     public AudioClip selectingSound;
@@ -17,6 +15,7 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        btn.fontStyle = FontStyles.SmallCaps;
     }
 
     public void OnPointerEnter(PointerEventData e)
@@ -30,21 +29,7 @@ public class BtnClick : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
     public void OnPointerClick(PointerEventData e)
     {
+        btn.fontStyle = FontStyles.SmallCaps;
         GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(pushingSound);
-
-        if (SceneIndexDestination > 0)
-        {
-            SwitchScene();
-        }
-
-    }
-
-    private void SwitchScene()
-    {
-        // get current scene
-        Scene scene = SceneManager.GetActiveScene();
-
-        // load a new scene
-        SceneManager.LoadScene(SceneIndexDestination);
     }
 }

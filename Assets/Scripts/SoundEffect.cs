@@ -15,7 +15,7 @@ public class SoundEffect : MonoBehaviour
 
     public void PlayMusic(AudioClip source)
     {
-        if (_audioSource.isPlaying) return;
+        // if (_audioSource.isPlaying) return;
         _audioSource.PlayOneShot(source);
     }
 

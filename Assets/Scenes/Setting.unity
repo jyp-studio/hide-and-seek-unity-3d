@@ -3865,6 +3865,7 @@ GameObject:
   - component: {fileID: 1148430787}
   - component: {fileID: 1148430786}
   - component: {fileID: 1148430785}
+  - component: {fileID: 1148430789}
   m_Layer: 5
   m_Name: TextBack
   m_TagString: Untagged
@@ -4000,7 +4001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f46f1af7f184df699a01dd5381ebe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneIndexDestination: 0
   btn: {fileID: 1148430787}
   selectingSound: {fileID: 8300000, guid: 003f6a136c9fa45f9accafae1506684c, type: 3}
   pushingSound: {fileID: 8300000, guid: f35c2e263119846a1bbc3479f8c811f5, type: 3}
@@ -4101,6 +4101,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148430783}
   m_CullTransparentMesh: 1
+--- !u!114 &1148430789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148430783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3840312d5955c40ea968a6aa6249062d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneIndexDestination: 0
 --- !u!1 &1156023776
 GameObject:
   m_ObjectHideFlags: 0
