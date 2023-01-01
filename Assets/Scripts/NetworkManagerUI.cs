@@ -15,6 +15,8 @@ public class NetworkManagerUI : MonoBehaviour
     private void Update()
     {
         
+        Debug.Log($"{Player.isHost}");
+        
         if(!isSet){
             if (Player.isServer)
             {
