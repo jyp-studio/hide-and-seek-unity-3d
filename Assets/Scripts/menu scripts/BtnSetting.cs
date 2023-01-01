@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BtnSetting : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
     public int SceneIndexDestination = 3;
     private AudioSource _audioSource;
     public AudioClip selectingSound;
@@ -22,10 +23,7 @@ public class BtnSetting : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerEnter(PointerEventData e)
     {
-        _audioSource.clip = selectingSound;
-        _audioSource.volume *= 3;
-        _audioSource.Play();
-
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(selectingSound);
         image.GetComponent<Image>().color = new Color32(77, 45, 15, 255);
 
 
@@ -36,8 +34,7 @@ public class BtnSetting : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     public void OnPointerClick(PointerEventData e)
     {
-        _audioSource.clip = pushingSound;
-        _audioSource.Play();
+        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(pushingSound);
 
         // get current scene
         Scene scene = SceneManager.GetActiveScene();
