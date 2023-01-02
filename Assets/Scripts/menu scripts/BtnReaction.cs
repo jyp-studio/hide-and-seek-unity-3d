@@ -20,7 +20,7 @@ public class BtnReaction : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData e)
     {
-        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(selectingSound);
+        GameObject.FindGameObjectWithTag("SelectingSound").GetComponent<BtnSelectingPlayer>().PlayOneShotMusic(selectingSound);
         btn.fontStyle = FontStyles.Underline | FontStyles.SmallCaps;
     }
     public void OnPointerExit(PointerEventData e)
@@ -30,6 +30,6 @@ public class BtnReaction : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void OnPointerClick(PointerEventData e)
     {
         btn.fontStyle = FontStyles.SmallCaps;
-        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(pushingSound);
+        GameObject.FindGameObjectWithTag("PushingSound").GetComponent<BtnPushingPlayer>().PlayOneShotMusic(pushingSound);
     }
 }

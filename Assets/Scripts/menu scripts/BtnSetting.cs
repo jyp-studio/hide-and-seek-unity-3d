@@ -23,7 +23,7 @@ public class BtnSetting : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerEnter(PointerEventData e)
     {
-        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(selectingSound);
+        GameObject.FindGameObjectWithTag("SelectingSound").GetComponent<BtnSelectingPlayer>().PlayOneShotMusic(selectingSound);
         image.GetComponent<Image>().color = new Color32(77, 45, 15, 255);
 
 
@@ -34,7 +34,7 @@ public class BtnSetting : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     public void OnPointerClick(PointerEventData e)
     {
-        GameObject.FindGameObjectWithTag("Music").GetComponent<SoundEffect>().PlayMusic(pushingSound);
+        GameObject.FindGameObjectWithTag("PushingSound").GetComponent<BtnPushingPlayer>().PlayOneShotMusic(pushingSound);
 
         // get current scene
         Scene scene = SceneManager.GetActiveScene();

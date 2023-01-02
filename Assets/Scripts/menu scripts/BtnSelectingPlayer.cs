@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bgm : MonoBehaviour
+public class BtnSelectingPlayer : MonoBehaviour
 {
-    private static Bgm instance = null;
-    public static Bgm Instance
+    public AudioSource _audioSource;
+
+    private static BtnSelectingPlayer instance = null;
+    public static BtnSelectingPlayer Instance
     {
         get { return instance; }
     }
@@ -32,5 +34,22 @@ public class Bgm : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void PlayOneShotMusic(AudioClip source)
+    {
+        _audioSource.PlayOneShot(source);
+    }
+
+    public void PlayMusic(AudioClip source)
+    {
+        if (_audioSource.isPlaying) return;
+        _audioSource.clip = source;
+        _audioSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        _audioSource.Stop();
     }
 }
