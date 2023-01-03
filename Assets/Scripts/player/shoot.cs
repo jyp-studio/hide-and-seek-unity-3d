@@ -1,54 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace SojaExiles
 
 {
     public class shoot : MonoBehaviour
     {
-        public Camera fpscam;     //ÃèÀY
+        public Camera fpscam;     //ï¿½ï¿½ï¿½Y
         public float range;
         public GameObject bullet;
         private AudioSource _audioSource;
         public AudioClip CorrectSound;
         public AudioClip Gun_shot;
+        public int HP;
+        public TextMeshProUGUI textHP;
 
-        public string target = "Cube";  // ¥Ø¼Ðª«¤§ tag
+        public string target = "Cube";  // ï¿½Ø¼Ðªï¿½ï¿½ï¿½ tag
 
-        RaycastHit hit;      // ·Æ¹«¹p®g
+        RaycastHit hit;      // ï¿½Æ¹ï¿½ï¿½pï¿½g
 
         public float Delay = 0f;
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
+            HP = 30;
+            DisplayHP(HP);
         }
 
         void Update()
         {
-            Delay -= Time.deltaTime;  // ©µ¿ð®É¶¡
-            if (Input.GetMouseButtonDown(0) && Delay <=0)
+            Delay -= Time.deltaTime;  // ï¿½ï¿½ï¿½ï¿½É¶ï¿½
+            if (Input.GetMouseButtonDown(0) && Delay <= 0)
             {
-                Delay = 0.5f;         // ©µ¿ð0.5¬í
-                if ( Physics.Raycast(fpscam.transform.position,fpscam.transform.forward , out hit ,range ))
-               {
+                Delay = 0.5f;         // ï¿½ï¿½ï¿½ï¿½0.5ï¿½ï¿½
+                if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, range))
+                {
                     CorrectTest(hit);
-                    // Debug.Log(hit.transform.name);  // Åã¥ÜÀ»¤¤¥Ø¼Ð
+                    // Debug.Log(hit.transform.name);  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½
                     //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
-                   
+
                     SpawnDecal(hit, bullet);
+
+                    DisplayHP((int)HP / 2);
                 }
             }
         }
 
-        void SpawnDecal(RaycastHit hit , GameObject prefab)    //¥Í¦¨¤l¼u
+        void SpawnDecal(RaycastHit hit, GameObject prefab)    //ï¿½Í¦ï¿½ï¿½lï¿½u
         {
             GameObject spawedDecal = GameObject.Instantiate(prefab, hit.point, Quaternion.LookRotation(hit.normal));
             spawedDecal.transform.SetParent(hit.collider.transform);
-            Destroy(spawedDecal,2);
+            Destroy(spawedDecal, 2);
         }
 
-        void CorrectTest(RaycastHit hit)      // §PÂ_¬O§_À»¤¤¯S©wª«¥ó
+        void CorrectTest(RaycastHit hit)      // ï¿½Pï¿½_ï¿½Oï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½wï¿½ï¿½ï¿½ï¿½
         {
             if (hit.transform.tag == target)
             {
@@ -60,6 +67,17 @@ namespace SojaExiles
             {
                 _audioSource.clip = Gun_shot;
                 _audioSource.Play();
+                HP--;
+            }
+        }
+
+        void DisplayHP(int hp)
+        {
+            Debug.Log(hp);
+            textHP.text = "";
+            for (int i = 0; i < hp; i++)
+            {
+                textHP.text += "/";
             }
         }
     }
