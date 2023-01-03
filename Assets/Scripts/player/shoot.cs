@@ -14,8 +14,6 @@ namespace SojaExiles
         private AudioSource _audioSource;
         public AudioClip CorrectSound;
         public AudioClip Gun_shot;
-        public int HP;
-        public TextMeshProUGUI textHP;
 
         public string target = "Cube";  // �ؼЪ��� tag
 
@@ -25,8 +23,6 @@ namespace SojaExiles
         void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            HP = 30;
-            DisplayHP(HP);
         }
 
         void Update()
@@ -42,8 +38,6 @@ namespace SojaExiles
                     //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
 
                     SpawnDecal(hit, bullet);
-
-                    DisplayHP((int)HP / 2);
                 }
             }
         }
@@ -67,17 +61,7 @@ namespace SojaExiles
             {
                 _audioSource.clip = Gun_shot;
                 _audioSource.Play();
-                HP--;
-            }
-        }
-
-        void DisplayHP(int hp)
-        {
-            Debug.Log(hp);
-            textHP.text = "";
-            for (int i = 0; i < hp; i++)
-            {
-                textHP.text += "/";
+                GameManager.playerHP--;
             }
         }
     }

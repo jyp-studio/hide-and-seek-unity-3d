@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     public TextMeshProUGUI textAlert;
+    public TextMeshProUGUI textHP;
+    public static int playerHP = 30;
     public static bool isHiding = false;
     public static bool isFinding = false;
     public static bool isGameEnd = false;
@@ -75,6 +77,28 @@ public class GameManager : MonoBehaviour
                 startGame = true;
             }
         }
+
+        // display player hp
+        if (playerHP > 0)
+        {
+            DisplayHP((int)playerHP / 2);
+        }
+        else
+        {
+            playerHP = 0;
+            DisplayHP((int)playerHP);
+            isGameEnd = true;
+        }
+
     }
 
+    void DisplayHP(int hp)
+    {
+        Debug.Log(hp);
+        textHP.text = "";
+        for (int i = 0; i < hp; i++)
+        {
+            textHP.text += "/";
+        }
+    }
 }
