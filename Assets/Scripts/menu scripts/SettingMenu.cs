@@ -44,11 +44,11 @@ public class SettingMenu : MonoBehaviour
     }
     public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("MasterVolume", 0.9f * volume - 80f);
+        audioMixer.SetFloat("MasterVolume", 0.8f * volume - 80f);
     }
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("MusicVolume", 0.9f * volume - 80f);
+        audioMixer.SetFloat("MusicVolume", 0.8f * volume - 80f);
         musicVolumeText.text = $"{(int)volume}";
     }
     public void SetSoundEffectVolume(float volume)
