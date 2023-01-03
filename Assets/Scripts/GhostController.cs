@@ -51,7 +51,7 @@ public class GhostController : MonoBehaviour
         animator.SetBool("Run", run);
 
         // attack
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.isFinding == true && Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Shoot");
         }
