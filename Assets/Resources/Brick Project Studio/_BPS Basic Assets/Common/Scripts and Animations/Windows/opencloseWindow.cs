@@ -19,36 +19,26 @@ namespace SojaExiles
 
 		void OnMouseOver()
 		{
-			{
-				if (Player)
+            if (Player)
+            {
+				if (open == false)
 				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
+					if (Input.GetKeyDown(KeyCode.F))
 					{
-						if (open == false)
-						{
-							if (Input.GetKeyDown(KeyCode.F))
-							{
-								StartCoroutine(opening());
-							}
-						}
-						else
-						{
-							if (open == true)
-							{
-								if (Input.GetKeyDown(KeyCode.F))
-								{
-									StartCoroutine(closing());
-								}
-							}
-
-						}
-
+						StartCoroutine(opening());
 					}
 				}
-
+				else
+				{
+					if (open == true)
+					{
+						if (Input.GetKeyDown(KeyCode.F))
+						{
+							StartCoroutine(closing());
+						}
+					}
+				}
 			}
-
 		}
 
 		IEnumerator opening()
