@@ -7,6 +7,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
+    private bool fingTime = false;
     public bool timerIsRunning = false;
     public TextMeshProUGUI timeText;
     // public Text timeText;
@@ -14,6 +15,8 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timerIsRunning = true;
+        timeRemaining = GameManager.hidingTime;
+        GameManager.isHiding = true;
     }
 
     // Update is called once per frame
@@ -27,9 +30,19 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out!");
-                timeRemaining = 0;
-                timerIsRunning = false;
+                if (fingTime)
+                {
+                    timeRemaining = 0;
+                    timerIsRunning = false;
+                    GameManager.isGameEnd = true;
+                }
+                else
+                {
+                    timeRemaining = GameManager.findingTime;
+                    fingTime = true;
+                    GameManager.isHiding = false;
+                    GameManager.isFinding = true;
+                }
             }
         }
         DisplayTime(timeRemaining);
