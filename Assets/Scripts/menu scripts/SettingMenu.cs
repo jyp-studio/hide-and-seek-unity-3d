@@ -38,6 +38,13 @@ public class SettingMenu : MonoBehaviour
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
 
+        float volume;
+        audioMixer.GetFloat("MusicVolume", out volume);
+        GameObject.Find("MusicSlider").GetComponent<Slider>().value = Mathf.RoundToInt((volume + 80f) / 0.8f);
+        audioMixer.GetFloat("SoundEffectVolume", out volume);
+        GameObject.Find("EffectSlider").GetComponent<Slider>().value = Mathf.RoundToInt((volume + 80f) / 0.9f);
+        GameObject.Find("MouseSlider").GetComponent<Slider>().value = Mathf.RoundToInt((MouseLook.mouseXSensitivity - 100f) / 9f);
+
         musicVolumeText.text = GameObject.Find("MusicSlider").GetComponent<Slider>().value.ToString();
         soundEffectVolumeText.text = GameObject.Find("EffectSlider").GetComponent<Slider>().value.ToString();
         mouseSensetivityText.text = GameObject.Find("MouseSlider").GetComponent<Slider>().value.ToString();
