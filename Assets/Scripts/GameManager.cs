@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI textAlert;
     public TextMeshProUGUI textHP;
-    public static int playerHP = 30;
+    public static int playerHP = 20;
     public static bool isHiding = false;
     public static bool isFinding = false;
     public static bool isGameEnd = false;
