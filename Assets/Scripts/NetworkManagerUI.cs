@@ -14,10 +14,11 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Update()
     {
-        
+
         Debug.Log($"{Player.isHost}");
-        
-        if(!isSet){
+
+        if (!isSet)
+        {
             if (Player.isServer)
             {
                 NetworkManager.Singleton.StartServer();
@@ -34,19 +35,5 @@ public class NetworkManagerUI : MonoBehaviour
                 isSet = true;
             }
         }
-        /*
-        serverBtn.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartServer();
-        });
-        hostBtn.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartHost();
-        });
-        clientBtn.onClick.AddListener(() =>
-        {
-            NetworkManager.Singleton.StartClient();
-        });
-        */
     }
 }

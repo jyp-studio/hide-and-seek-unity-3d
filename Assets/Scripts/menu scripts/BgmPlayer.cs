@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BgmPlayer : MonoBehaviour
 {
     public AudioSource _audioSource;
+    public AudioClip menuBgm;
+    public AudioClip gameBgm;
+    private bool isAlreadyStop = false;
+    private bool isGameTime = false;
 
     private static BgmPlayer instance = null;
     public static BgmPlayer Instance
@@ -33,7 +38,26 @@ public class BgmPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool lastGameTime = isGameTime;
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            isGameTime = false;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            isGameTime = true;
+        }
 
+        if (isGameTime != lastGameTime) StopMusic();
+
+        if (isGameTime)
+        {
+            PlayMusic(gameBgm);
+        }
+        else
+        {
+            PlayMusic(menuBgm);
+        }
     }
 
     public void PlayOneShotMusic(AudioClip source)
@@ -50,6 +74,6 @@ public class BgmPlayer : MonoBehaviour
 
     public void StopMusic()
     {
-        _audioSource.Stop();
+        if (_audioSource.isPlaying) _audioSource.Stop();
     }
 }

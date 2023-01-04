@@ -433,6 +433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 76803469}
+  menuBgm: {fileID: 8300000, guid: a65ff372530e9420f810f3cc055acfe0, type: 3}
+  gameBgm: {fileID: 8300000, guid: 1a0f80e3ec7504ca6955239da048cb33, type: 3}
 --- !u!1 &223934322
 GameObject:
   m_ObjectHideFlags: 0
