@@ -53,14 +53,14 @@ namespace SojaExiles
 
         void Start()
         {
-            if (!IsLocalPlayer) cam.enabled = false;
+            //if (!IsLocalPlayer) cam.enabled = false;
         }
 
         // Update is called once per frame
         void Update()
         {
 
-            if (!IsOwner) return;
+            //if (!IsOwner) return;
 
             if (Input.GetKeyDown(KeyCode.T))
             {
