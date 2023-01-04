@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static bool isHiding = false;
     public static bool isFinding = false;
     public static bool isGameEnd = false;
+    public static bool isWin = false; // if this player is win or not
     public static int hidingTime = 10;
     public static int findingTime = 300;
 
@@ -88,6 +90,9 @@ public class GameManager : MonoBehaviour
             playerHP = 0;
             DisplayHP((int)playerHP);
             isGameEnd = true;
+
+            // load the end scene
+            SceneManager.LoadScene(6);
         }
 
     }
