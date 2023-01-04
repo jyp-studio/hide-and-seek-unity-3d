@@ -27,17 +27,20 @@ namespace SojaExiles
 
         void Update()
         {
-            Delay -= Time.deltaTime;  // ����ɶ�
-            if (Input.GetMouseButtonDown(0) && Delay <= 0)
+            if (GameManager.isFinding == true)
             {
-                Delay = 0.5f;         // ����0.5��
-                if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, range))
+                Delay -= Time.deltaTime;  // ����ɶ�
+                if (Input.GetMouseButtonDown(0) && Delay <= 0)
                 {
-                    CorrectTest(hit);
-                    // Debug.Log(hit.transform.name);  // ��������ؼ�
-                    //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
+                    Delay = 0.5f;         // ����0.5��
+                    if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, range))
+                    {
+                        CorrectTest(hit);
+                        // Debug.Log(hit.transform.name);  // ��������ؼ�
+                        //  hit.collider.GetComponent<Renderer>().material.color = Color.green;  
 
-                    SpawnDecal(hit, bullet);
+                        SpawnDecal(hit, bullet);
+                    }
                 }
             }
         }
@@ -51,7 +54,7 @@ namespace SojaExiles
 
         void CorrectTest(RaycastHit hit)      // �P�_�O�_�����S�w����
         {
-            if (hit.transform.tag == target)
+            if ( hit.transform.tag == target)
             {
                 Destroy(hit.transform.gameObject);
                 _audioSource.clip = CorrectSound;
