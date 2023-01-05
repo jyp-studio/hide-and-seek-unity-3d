@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public static bool isGameEnd = false;
     public static bool isWin = false; // if this player is win or not
     public static int hidingTime = 10;
-    public static int findingTime = 30;
+    public static int findingTime = 300;
 
     private float countDown = 3;
     private bool startCountDown = false;

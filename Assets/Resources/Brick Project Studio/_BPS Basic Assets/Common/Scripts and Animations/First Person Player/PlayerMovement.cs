@@ -57,6 +57,7 @@ namespace SojaExiles
         void Start()
         {
             if (!IsLocalPlayer) cam.enabled = false;
+            textTest.text = "";
         }
 
         // Update is called once per frame
@@ -98,15 +99,15 @@ namespace SojaExiles
 
             controller.Move(velocity * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                MessageServerRpc(1, "true"); // isWIn
-                MessageServerRpc(2, "true"); // isGameEnd
-            }
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                MessageServerRpc(0, $"[ {Player.playerName} ]: hi");
-            }
+            // if (Input.GetKeyDown(KeyCode.I))
+            // {
+            //     MessageServerRpc(1, "true"); // isWIn
+            //     MessageServerRpc(2, "true"); // isGameEnd
+            // }
+            // if (Input.GetKeyDown(KeyCode.O))
+            // {
+            //     MessageServerRpc(0, $"[ {Player.playerName} ]: hi");
+            // }
         }
 
 
@@ -139,14 +140,12 @@ namespace SojaExiles
         [ServerRpc(Delivery = RpcDelivery.Unreliable, RequireOwnership = false)]
         public void MessageServerRpc(int code, string message)
         {
-            textTest.text += "calling server";
             MessageClientRpc(code, message);
         }
 
         [ClientRpc(Delivery = RpcDelivery.Unreliable)]
         public void MessageClientRpc(int code, string message = "")
         {
-            textTest.text += "calling client";
             // if (IsOwner) return;
             switch (code)
             {
