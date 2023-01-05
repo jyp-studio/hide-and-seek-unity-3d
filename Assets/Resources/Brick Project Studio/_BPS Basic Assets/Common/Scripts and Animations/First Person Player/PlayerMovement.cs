@@ -45,6 +45,7 @@ namespace SojaExiles
 
         public override void OnNetworkSpawn()
         {
+            //if (!IsLocalPlayer) enabled = false;
             randomNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) =>
             {
                 Debug.Log(OwnerClientId + "; " + newValue._int + "; " + newValue._bool + "; " + newValue.message);
@@ -53,14 +54,14 @@ namespace SojaExiles
 
         void Start()
         {
-            //if (!IsLocalPlayer) cam.enabled = false;
+            if (!IsLocalPlayer) cam.enabled = false;
         }
 
         // Update is called once per frame
         void Update()
         {
 
-            //if (!IsOwner) return;
+            if (!IsOwner) return;
 
             if (Input.GetKeyDown(KeyCode.T))
             {
