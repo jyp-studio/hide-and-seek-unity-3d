@@ -15,9 +15,9 @@ public class GameManager : MonoBehaviour
     public static bool isGameEnd = false;
     public static bool isWin = false; // if this player is win or not
     public static int hidingTime = 10;
-    public static int findingTime = 3000;
+    public static int findingTime = 30;
 
-    private float countDown = 5;
+    private float countDown = 3;
     private bool startCountDown = false;
     private bool startGame = false;
 
@@ -91,10 +91,32 @@ public class GameManager : MonoBehaviour
             DisplayHP((int)playerHP);
             isGameEnd = true;
 
-            // load the end scene
-            SceneManager.LoadScene(5);
         }
 
+        // end game load end game scene
+        if (isGameEnd)
+        {
+            // set variables back
+            playerHP = 10;
+            isHiding = false;
+            isFinding = false;
+            isGameEnd = false;
+            isWin = false;
+            startCountDown = false;
+            startGame = false;
+
+            // unlock mouse
+            Cursor.lockState = CursorLockMode.None;
+
+            // load the end scene
+            SceneManager.LoadScene(5);
+
+            // destroy network manager
+            Destroy(GameObject.Find("NetworkManager"));
+
+            // destroy game manager
+            Destroy(this.gameObject);
+        }
     }
 
     void DisplayHP(int hp)
