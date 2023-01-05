@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using TMPro;
 
 namespace SojaExiles
 
@@ -12,6 +13,7 @@ namespace SojaExiles
         [SerializeField] private Transform spawnedObject;
         private Transform spawnedObjectTransform;
 
+        public TextMeshProUGUI textTest;
         public Camera cam;
         public CharacterController controller;
 
@@ -96,21 +98,70 @@ namespace SojaExiles
 
             controller.Move(velocity * Time.deltaTime);
 
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                MessageServerRpc(0, "", false);
+            }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                MessageServerRpc(1, $"[ {Player.playerName} ]: hi", false);
+            }
         }
 
 
-        [ServerRpc]
-        private void TestServerRpc(ServerRpcParams serverRpcParams)
+        // [ServerRpc]
+        // private void TestServerRpc(ServerRpcParams serverRpcParams)
+        // {
+        //     Debug.Log("TestServerRpc" + OwnerClientId + ", " + serverRpcParams.Receive.SenderClientId);
+        // }
+
+        // [ClientRpc]
+        // private void TestClientRpc(ClientRpcParams clientRpcParams)
+        // {
+        //     Debug.Log("TestClientRpc");
+        // }
+
+        /*
+        <summary> 
+            A client will call ServerPrc() to tell a server do something,
+            then the server will execute ClientRpc.
+            That is, 
+            ServerRpc is Client -> Server
+            ClientRpc is Server -> Client 
+        <summary/>
+
+        code:
+        0: set bool like activate a win scene
+        1: send message
+        */
+
+        [ServerRpc(Delivery = RpcDelivery.Unreliable, RequireOwnership = false)]
+        private void MessageServerRpc(int code, string message, bool value = false)
         {
-            Debug.Log("TestServerRpc" + OwnerClientId + ", " + serverRpcParams.Receive.SenderClientId);
+            textTest.text += "calling server";
+            MessageClientRpc(code, message, value);
         }
 
-        [ClientRpc]
-        private void TestClientRpc(ClientRpcParams clientRpcParams)
+        [ClientRpc(Delivery = RpcDelivery.Unreliable)]
+        private void MessageClientRpc(int code, string message = "", bool value = false)
         {
-            Debug.Log("TestClientRpc");
+            textTest.text += "calling client";
+            // if (IsOwner) return;
+            switch (code)
+            {
+                case 0:
+                    {
+                        GameManager.isWin = true;
+                        GameManager.isGameEnd = true;
+                        break;
+                    }
+                case 1:
+                    {
+                        textTest.text += message;
+                        textTest.text += "<br>";
+                        break;
+                    }
+            }
         }
-
-        
     }
 }

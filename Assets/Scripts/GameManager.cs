@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static bool isGameEnd = false;
     public static bool isWin = false; // if this player is win or not
     public static int hidingTime = 10;
-    public static int findingTime = 300;
+    public static int findingTime = 3000;
 
     private float countDown = 5;
     private bool startCountDown = false;
@@ -92,14 +92,14 @@ public class GameManager : MonoBehaviour
             isGameEnd = true;
 
             // load the end scene
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(5);
         }
 
     }
 
     void DisplayHP(int hp)
     {
-        Debug.Log(hp);
+        // Debug.Log(hp);
         textHP.text = "";
         for (int i = 0; i < hp; i++)
         {

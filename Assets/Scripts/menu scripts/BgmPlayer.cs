@@ -8,7 +8,6 @@ public class BgmPlayer : MonoBehaviour
     public AudioSource _audioSource;
     public AudioClip menuBgm;
     public AudioClip gameBgm;
-    private bool isAlreadyStop = false;
     private bool isGameTime = false;
 
     private static BgmPlayer instance = null;
