@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using SojaExiles;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     public TextMeshProUGUI textAlert;
     public TextMeshProUGUI textHP;
-    public static int playerHP = 20;
+    public static int playerHP = 4;
     public static bool isHiding = false;
     public static bool isFinding = false;
     public static bool isGameEnd = false;
@@ -89,6 +90,11 @@ public class GameManager : MonoBehaviour
         {
             playerHP = 0;
             DisplayHP((int)playerHP);
+
+            // set ranger's isWin = true
+            GameObject.FindGameObjectWithTag("Ranger").GetComponent<PlayerMovement>().MessageServerRpc(1, "true");
+            // tell other's that game is end
+            GameObject.FindGameObjectWithTag("Ranger").GetComponent<PlayerMovement>().MessageServerRpc(2, "true");
             isGameEnd = true;
 
         }

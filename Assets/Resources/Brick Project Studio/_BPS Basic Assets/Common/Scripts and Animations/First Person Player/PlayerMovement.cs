@@ -100,11 +100,12 @@ namespace SojaExiles
 
             if (Input.GetKeyDown(KeyCode.I))
             {
-                MessageServerRpc(0, "", false);
+                MessageServerRpc(1, "true"); // isWIn
+                MessageServerRpc(2, "true"); // isGameEnd
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                MessageServerRpc(1, $"[ {Player.playerName} ]: hi", false);
+                MessageServerRpc(0, $"[ {Player.playerName} ]: hi");
             }
         }
 
@@ -136,14 +137,14 @@ namespace SojaExiles
         */
 
         [ServerRpc(Delivery = RpcDelivery.Unreliable, RequireOwnership = false)]
-        private void MessageServerRpc(int code, string message, bool value = false)
+        public void MessageServerRpc(int code, string message)
         {
             textTest.text += "calling server";
-            MessageClientRpc(code, message, value);
+            MessageClientRpc(code, message);
         }
 
         [ClientRpc(Delivery = RpcDelivery.Unreliable)]
-        private void MessageClientRpc(int code, string message = "", bool value = false)
+        public void MessageClientRpc(int code, string message = "")
         {
             textTest.text += "calling client";
             // if (IsOwner) return;
@@ -151,14 +152,20 @@ namespace SojaExiles
             {
                 case 0:
                     {
-                        GameManager.isWin = true;
-                        GameManager.isGameEnd = true;
+                        textTest.text += message;
+                        textTest.text += "\r\n";
                         break;
                     }
                 case 1:
                     {
-                        textTest.text += message;
-                        textTest.text += "<br>";
+                        bool value = message == "true" ? true : false;
+                        GameManager.isWin = value;
+                        break;
+                    }
+                case 2:
+                    {
+                        bool value = message == "true" ? true : false;
+                        GameManager.isGameEnd = value;
                         break;
                     }
             }

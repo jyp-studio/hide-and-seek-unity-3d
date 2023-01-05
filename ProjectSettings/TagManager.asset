@@ -9,6 +9,7 @@ TagManager:
   - Music
   - SelectingSound
   - PushingSound
+  - Ranger
   layers:
   - Default
   - TransparentFX
